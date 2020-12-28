@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>cars</key>
+	<array>
+		<string>tesla</string>
+		<string>audi</string>
+		<string>accord</string>
+		<string>bmw</string>
+	</array>
+	<key>mountain</key>
+	<array>
+		<string>sinhagad</string>
+		<string>pratapgad</string>
+		<string>torna</string>
+		<string>rajgad</string>
+	</array>
+	<key>flowers</key>
+	<array>
+		<string>jasmine</string>
+		<string>tulip</string>
+		<string>lotus</string>
+	</array>
+</dict>
+</plist>
