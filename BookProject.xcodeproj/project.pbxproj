@@ -17,6 +17,11 @@
 		E357E1F82536631C00D789C0 /* BookProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357E1F72536631C00D789C0 /* BookProjectUITests.swift */; };
 		E357E20D2537B2DE00D789C0 /* fireplace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E357E20C2537B2DE00D789C0 /* fireplace.mp3 */; };
 		E35FE20625781F4D00E3CE6F /* ImageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35FE20525781F4D00E3CE6F /* ImageList.plist */; };
+		E3FC259A25A2401F006BB256 /* LegacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC259925A2401F006BB256 /* LegacyViewController.swift */; };
+		E3FC259F25A24531006BB256 /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC259E25A24531006BB256 /* BookCollectionViewController.swift */; };
+		E3FC25A425A25EA0006BB256 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25A325A25EA0006BB256 /* BookCell.swift */; };
+		E3FC25A925A260DF006BB256 /* KeyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25A825A260DF006BB256 /* KeyConstants.swift */; };
+		E3FC25D925A39627006BB256 /* BookARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25D825A39627006BB256 /* BookARViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
