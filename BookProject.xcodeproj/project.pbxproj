@@ -22,6 +22,7 @@
 		E3FC25A425A25EA0006BB256 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25A325A25EA0006BB256 /* BookCell.swift */; };
 		E3FC25A925A260DF006BB256 /* KeyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25A825A260DF006BB256 /* KeyConstants.swift */; };
 		E3FC25D925A39627006BB256 /* BookARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC25D825A39627006BB256 /* BookARViewController.swift */; };
+		E3FC262925A3DB72006BB256 /* ImagesContainerPlaneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC262825A3DB72006BB256 /* ImagesContainerPlaneNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		E3FC25A325A25EA0006BB256 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		E3FC25A825A260DF006BB256 /* KeyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
 		E3FC25D825A39627006BB256 /* BookARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookARViewController.swift; sourceTree = "<group>"; };
+		E3FC262825A3DB72006BB256 /* ImagesContainerPlaneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesContainerPlaneNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				E3FC259E25A24531006BB256 /* BookCollectionViewController.swift */,
 				E3FC25A325A25EA0006BB256 /* BookCell.swift */,
 				E3FC25D825A39627006BB256 /* BookARViewController.swift */,
+				E3FC262825A3DB72006BB256 /* ImagesContainerPlaneNode.swift */,
 			);
 			path = BookProject;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FC262925A3DB72006BB256 /* ImagesContainerPlaneNode.swift in Sources */,
 				E3FC25D925A39627006BB256 /* BookARViewController.swift in Sources */,
 				E3FC259A25A2401F006BB256 /* LegacyViewController.swift in Sources */,
 				E357E1DA2536631A00D789C0 /* ViewController.swift in Sources */,
