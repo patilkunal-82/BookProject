@@ -7,6 +7,22 @@
 
 import UIKit
 import ARKit
+import AVFoundation
+import AVKit
+
+
+enum ContentType {
+    case image
+    case video
+    case model3D
+}
+
+struct AssetContainer {
+    let type: ContentType
+    let image: UIImage?
+    var video: AVPlayer?
+    //var model: Model3D?
+}
 
 class BookARViewController: ViewController, ARSCNViewDelegate {
 
@@ -16,7 +32,8 @@ class BookARViewController: ViewController, ARSCNViewDelegate {
             print("bookAnchorContentNames: \(bookAnchorContentNames)")
         }
     }
-    private var anchorsAndContentData: [ARReferenceImage : [UIImage]] = [:]
+    private var anchorsAndContentData: [ARReferenceImage : [AssetContainer]] = [:]
+  //  private var anchorsAndContentData: [ARReferenceImage : [UIImage]] = [:]
     private let fileManager = FileManager()
 
     var bookDirectoryPath: String = ""
@@ -28,6 +45,13 @@ class BookARViewController: ViewController, ARSCNViewDelegate {
         
         // Set the view's delegate
         sceneView.delegate = self
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
 
         // Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
@@ -73,8 +97,13 @@ extension BookARViewController {
             print("no content found for anchor: \(String(describing: imageAnchor.name))")
             return
         }
-        let imageNode = ImagesContainerPlaneNode(images: contentArray)
-        node.addChildNode(imageNode)
+        
+    //let imageNode = ImagesContainerPlaneNode(images: contentArray)
+    //node.addChildNode(imageNode)
+       
+       let displayNode = ImagesContainerPlaneNode (mixedContent: contentArray)
+        node.addChildNode(displayNode)
+        
     }
 }
 
@@ -90,7 +119,7 @@ extension BookARViewController {
     
     private func prepareAnchorsAndContentData() {
         for anchor in bookAnchorContentNames.keys {
-            guard let image = getImageAtBookDirectory(byName: anchor) else { continue }
+            guard let image = getImageAtBookDirectory(atPath: bookDirectoryPath.appending("/" + anchor)) else { continue }
             
             guard let imageToCIImage = CIImage(image: image), let cgImage = convertCIImageToCGImage(inputImage: imageToCIImage) else {
                 print("Can not convert UIImage to CGIImage \(anchor)")
@@ -100,19 +129,47 @@ extension BookARViewController {
             let arImage = ARReferenceImage(cgImage, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.2)
             
             anchorsAndContentData[arImage] = []
+            
+            
             for content in bookAnchorContentNames[anchor]! {
-                guard let contentImage = getImageAtBookDirectory(byName: content) else { continue }
-                anchorsAndContentData[arImage]?.append(contentImage)
+                let path = bookDirectoryPath.appending("/" + content)
+                let url = URL(fileURLWithPath: path)
+                let pathExtension = url.pathExtension
+                // check the path extension
+                
+                if  pathExtension == "jpg" {
+                guard let contentImage = getImageAtBookDirectory(atPath: path) else { continue }
+                let assetContainer = AssetContainer(type: .image, image: contentImage)
+                anchorsAndContentData[arImage]?.append(assetContainer)
+                }
+
+                if pathExtension == "mp4" {
+                guard let contentVideo = getVideoAtBookDirectory(atPath: path) else { continue }
+               // let videoContentController = AVPlayerViewController()
+              //  videoContentController.player = contentVideo
+                let assetContainer = AssetContainer(type: .video, image: image, video: contentVideo)
+                anchorsAndContentData[arImage]?.append(assetContainer)
+                }
             }
         }
     }
     
-    private func getImageAtBookDirectory(byName imageName: String) -> UIImage? {
-        let path = bookDirectoryPath.appending("/" + imageName)
+    private func getImageAtBookDirectory(atPath path: String) -> UIImage? {
         guard fileManager.fileExists(atPath: path), let image = UIImage(contentsOfFile: path) else {
             print("file does not exist \(path) or can't read file into UIImage")
             return nil
         }
         return image
+    }
+    
+    private func getVideoAtBookDirectory(atPath path: String) -> AVPlayer? {
+        let videoURL = URL(fileURLWithPath: path)
+        let video = AVPlayer(url: videoURL)
+        //let videoController = AVPlayerViewController()
+        guard fileManager.fileExists(atPath: path)  else {
+            print("file does not exist \(path) or can't read file into UIImage")
+            return nil
+        }
+        return video
     }
 }
